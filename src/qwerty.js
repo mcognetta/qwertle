@@ -90,14 +90,30 @@ function HSVtoRGB(h, s, v) {
     b * 255
   )})`;
 }
+// const getColorFromDistance = (distance) => {
+//   init()
+//   if (distance === null) {
+//     return null
+//   }
+//   if (distance === 0) {
+//     return "forestgreen";
+//   }
+//   return HSVtoRGB(0.01, 1, (distance / maxDistance) * 2);
+// };
+
 const getColorFromDistance = (distance) => {
   init()
   if (distance === null) {
     return null
   }
-  if (distance === 0) {
-    return "forestgreen";
+  if (distance === 0){
+    return "forestgreen"
   }
-  return HSVtoRGB(0.01, 1, (distance / maxDistance) * 2);
-};
+
+  let norm_dist = (distance / maxDistance ) * 2
+
+  return `rgb(${Math.round(Math.min(255, 2 * 255 * norm_dist))}, ${Math.round(Math.min(255, 2 * 255 * (1 - norm_dist)))}, ${0})`;
+}
+
+
 export { getDistance, getColorFromDistance, HSVtoRGB, init };

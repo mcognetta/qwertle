@@ -11,6 +11,7 @@
                     v-for="(letter, j) in previousGuess"
                     :style="{
                         'background-color': i == guesses.length-1 && isAnimating? '':colorsOfPreviousGuesses[i][j],
+                        'border': i == guesses.length-1 && isAnimating? '': (colorsOfPreviousGuesses[i][j] == 'forestgreen' ? '2px solid #FFFFFF' : ''),
                         'animation-name': i == guesses.length-1 && isAnimating ? 'flip-reveal'+j : '',
                         'animation-duration': '550ms',
                         'animation-delay': 300*j + 'ms',
@@ -19,7 +20,7 @@
                     :key="letter.letter + j"
                     @mouseenter="hoveringGuessLetter = letter.letter"
                 >
-                    {{ letter.letter }}
+                   <div class="shadowletter"> {{ letter.letter }} </div>
                 </div>
             </div>
 
@@ -376,8 +377,9 @@ export default {
         transform: rotateX(-90deg);
     }
     51% {
-        background-color: v-bind('colorsOfPreviousGuesses[guesses.length-1]?.[4]');    }
-        100% {
+        background-color: v-bind('colorsOfPreviousGuesses[guesses.length-1]?.[4]'); 
+    }
+    100% {
         background-color: v-bind('colorsOfPreviousGuesses[guesses.length-1]?.[4]');    
         transform: rotateX(0deg);
     }
@@ -401,4 +403,9 @@ export default {
         transform: translate(0,0);
     }
 }
+.shadowletter {
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+
 </style>
