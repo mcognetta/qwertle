@@ -112,7 +112,7 @@ const getColorFromDistance = (distance) => {
 
   let norm_dist = (distance / maxDistance ) * 2
 
-  return `rgb(${Math.round(Math.min(255, 2 * 255 * norm_dist))}, ${Math.round(Math.min(255, 2 * 255 * (1 - norm_dist)))}, ${0})`;
+  return `rgb(${Math.round(2 * 255 * norm_dist)}, ${Math.round(2 * 255 * (1 - norm_dist))}, ${0})`;
 }
 
 
